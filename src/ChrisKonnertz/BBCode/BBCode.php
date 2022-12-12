@@ -360,7 +360,14 @@ class BBCode
                 break;
             case self::TAG_NAME_IMG:
                 if ($tag->opening) {
-                    $code = '<img src="';
+                    if($tag->property) {
+                        list($sizex, $sizey) = explode("x", $tag->property);
+                
+                        $code = '<img width="' . $sizex . '" height="' . $sizey . '" src="';
+                    }
+                    else {
+                        $code = '<img src="';
+                    }
                 } else {
                     $code = '" />';
                 }
